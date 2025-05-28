@@ -19,7 +19,24 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
     await ctx.send(f'Merhaba! Ben {bot.user}, bir Discord sohbet botuyum!')
+@bot.command()
+async def lig(ctx):
+    """Dünyadaki bazı büyük futbol liglerindeki takımları listeler."""
+    leagues_teams = {
+        "Premier League": ["Manchester City", "Liverpool", "Chelsea", "Arsenal", "Manchester United"],
+        "La Liga": ["Real Madrid", "Barcelona", "Atletico Madrid", "Sevilla", "Valencia"],
+        "Bundesliga": ["Bayern Munich", "Borussia Dortmund", "RB Leipzig", "Bayer Leverkusen", "Union Berlin"],
+        "Serie A": ["Juventus", "Inter Milan", "AC Milan", "Napoli", "Roma"],
+        "Ligue 1": ["Paris Saint-Germain", "Marseille", "Lyon", "Monaco", "Lille"],
+        "Süper Lig": ["Galatasaray", "Fenerbahçe", "Beşiktaş", "Başakşehir"]
+    }
 
+    message = "**Dünyadaki bazı büyük futbol ligleri ve En Büyük takımları:**\n"
+    for lig, teams in leagues_teams.items():
+        message += f"\n**{lig}**: {', '.join(teams)}"
+
+    await ctx.send(message)
+    
 @bot.command()
 async def heh(ctx, count_heh=5):
     await ctx.send("he" * count_heh)
@@ -68,5 +85,5 @@ async def _bot(ctx):
     await ctx.send('Evet, bot havalı.')
 
 
-bot.run("BOT TOKEEEn")
+bot.run("TOKEN")
 
